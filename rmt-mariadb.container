@@ -1,0 +1,22 @@
+# rmt-mariadb.container
+[Container]
+Pod=rmt.pod
+ContainerName=rmt-mariadb
+Environment=MYSQL_DATABASE=rmt MYSQL_USER=rmt MYSQL_PASSWORD=rmt MYSQL_ROOT_PASSWORD=rmt
+Image=registry.suse.com/suse/mariadb:latest
+Volume=/etc/containers/systemd/notify-systemd.py:/docker-entrypoint-initdb.d/notify-systemd.py
+Notify=true
+#PublishPort=3306:3306
+Network=rmt-network
+Volume=/srv/rmt/mariadb:/var/lib/mysql:Z
+Timezone=local
+
+[Service]
+Restart=on-failure
+ExecStartPre=-/usr/bin/mkdir -p /srv/rmt/mariadb
+ExecStartPre=-/usr/bin/chcon -R system_u:object_r:container_file_t:s0 -P /sr/rmt/mariadb
+TimeoutStartSec=500
+
+[Install]
+WantedBy=multi-user.target default.target
+

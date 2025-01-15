@@ -1,0 +1,11 @@
+[Unit]
+Description=rmt Pod
+After=network-online.target
+
+[Pod]
+Network=rmt.network
+PodName=rmt
+
+[Install]
+WantedBy=multi-user.target default.target
+

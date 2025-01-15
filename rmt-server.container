@@ -1,0 +1,14 @@
+# rmt-server.container
+[Unit]
+After=rmt-mariadb.service
+
+[Container]
+ContainerName=rmt-server
+Pod=rmt.pod
+Secret=SCC_USERNAME,type=env,target=SCC_USERNAME
+Secret=SCC_PASSWORD,type=env,target=SCC_PASSWORD
+Environment=MYSQL_HOST=rmt-mariadb MYSQL_DATABASE=rmt MYSQL_USER=rmt MYSQL_PASSWORD=rmt SCC_SYNC=true
+Image=registry.suse.com/suse/rmt-server:latest
+#PublishPort=4224:4224
+Network=rmt-network
+Volume=/srv/rmt/storage:/var/lib/rmt:Z
