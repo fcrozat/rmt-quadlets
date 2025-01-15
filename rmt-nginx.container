@@ -6,10 +6,9 @@ Image=registry.suse.com/suse/nginx:latest
 PublishPort=80:80
 PublishPort=443:443
 Network=rmt-network
-Volume=/srv/rmt/vhosts.d:/etc/nginx/vhosts.d
-Volume=/srv/rmt/ssl:/etc/rmt/ssl
-Volume=/srv/rmt/storage:/usr/share/rmt
+Volume=/srv/rmt/vhosts.d:/etc/nginx/vhosts.d:Z
+Volume=/srv/rmt/ssl:/etc/rmt/ssl:Z
+Volume=/srv/rmt/storage:/usr/share/rmt:Z
 
 [Service]
 Restart=on-failure
-
