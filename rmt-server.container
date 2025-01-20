@@ -12,3 +12,7 @@ Image=registry.suse.com/suse/rmt-server:latest
 #PublishPort=4224:4224
 Network=rmt-network
 Volume=/srv/rmt/storage:/var/lib/rmt:Z
+
+[Install]
+WantedBy=multi-user.target default.target
+

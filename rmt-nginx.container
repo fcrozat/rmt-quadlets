@@ -1,4 +1,7 @@
 # rmt-nginx.container
+[Unit]
+After=rmt-server.service
+
 [Container]
 ContainerName=rmt-nginx
 Pod=rmt.pod
@@ -12,3 +15,7 @@ Volume=/srv/rmt/storage:/usr/share/rmt:Z
 
 [Service]
 Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target default.target
+
