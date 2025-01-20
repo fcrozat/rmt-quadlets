@@ -14,7 +14,7 @@ Timezone=local
 [Service]
 Restart=on-failure
 ExecStartPre=-/usr/bin/mkdir -p /srv/rmt/mariadb
-ExecStartPre=-/usr/bin/chcon -R system_u:object_r:container_file_t:s0 -P /sr/rmt/mariadb
+ExecStartPre=-/usr/bin/chcon -R system_u:object_r:container_file_t:s0 -P /srv/rmt/mariadb
 TimeoutStartSec=500
 
 [Install]
