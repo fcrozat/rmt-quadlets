@@ -1,0 +1,30 @@
+[ req ]
+# Don't prompt for DN
+prompt = no
+# DN components
+distinguished_name = req_distinguished_name
+req_extensions = v3_req
+
+[ req_distinguished_name ]
+countryName = US
+stateOrProvinceName = New York
+localityName = New York
+organizationName = My Company Inc.
+# adapt for the DNS entry for your RMT server
+commonName = foo.bar
+
+[ v3_req ]
+# Subject Alternative Name
+subjectAltName = @alt_names
+# This is the critical part
+basicConstraints = critical, CA:TRUE
+# Set key usage to allow signing other certificates and CRLs
+keyUsage = critical, digitalSignature, cRLSign, keyCertSign
+
+
+[ alt_names ]
+# The DNS name of your server (mandatory)
+DNS.1 = foo.bar
+# The IP address of your server, if you want to access it directly without DNS
+IP.1 = 192.168.100.1
+# Add other names or IPs as needed, e.g., DNS.2, IP.2

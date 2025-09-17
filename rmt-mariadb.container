@@ -6,7 +6,6 @@ Environment=MYSQL_DATABASE=rmt MYSQL_USER=rmt MYSQL_PASSWORD=rmt MYSQL_ROOT_PASS
 Image=registry.suse.com/suse/mariadb:latest
 Volume=/etc/containers/systemd/notify-systemd.py:/docker-entrypoint-initdb.d/notify-systemd.py
 Notify=true
-#PublishPort=3306:3306
 Network=rmt-network
 Volume=/srv/rmt/mariadb:/var/lib/mysql:Z
 Timezone=local

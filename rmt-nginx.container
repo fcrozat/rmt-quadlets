@@ -12,9 +12,14 @@ Network=rmt-network
 Volume=/srv/rmt/vhosts.d:/etc/nginx/vhosts.d:Z
 Volume=/srv/rmt/ssl:/etc/rmt/ssl:Z
 Volume=/srv/rmt/storage:/usr/share/rmt:Z
+Volume=/srv/rmt/logs:/var/log/nginx:Z
 
 [Service]
 Restart=on-failure
+ExecStartPre=-/usr/bin/mkdir -p /srv/rmt/logs
+ExecStartPre=-/usr/bin/chcon -R system_u:object_r:container_file_t:s0 -P /srv/rmt/logs
+TimeoutStartSec=500
+
 
 [Install]
 WantedBy=multi-user.target default.target
